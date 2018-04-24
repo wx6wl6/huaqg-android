@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.qlp2p.doctorcar.ui.ScrollViewExt android:id="@+id/svMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout style="@style/layout_style_mwv" android:id="@+id/ll_content"
+            android:paddingTop="100dp" android:layout_centerInParent="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:src="@drawable/logo_lablel"/>
+            <LinearLayout
+                style="@style/layout_style_mwv" android:layout_marginTop="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" android:background="@drawable/bg_textview_light_blue_br">
+                    <ImageView android:layout_width="30dp" android:layout_height="40dp"
+                        android:layout_gravity="center_vertical" android:src="@drawable/login_icon_sj"/>
+                    <EditText
+                        android:id="@+id/etPhone"   style="@style/textview_style_white16"
+                        android:layout_width="0dp"  android:layout_height="50dp"
+                        android:layout_weight="1"   android:background="@color/colorPrimaryLight"
+                        android:gravity="center_vertical"    android:hint="请输入手机号"
+                        android:inputType="phone" android:paddingLeft="5dp"
+                        android:paddingRight="5dp"  android:text="" android:textColorHint="@color/white_gray"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"   android:layout_height="50dp"
+                    android:layout_marginTop="10dp" android:background="@drawable/bg_textview_light_blue_br">
+                    <ImageView android:layout_width="25dp" android:layout_height="30dp"
+                        android:layout_gravity="center_vertical" android:src="@drawable/login_icon_mm"/>
+                    <EditText
+                        android:id="@+id/etPwd"
+                        style="@style/textview_style_white16"   android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1" android:background="@color/colorPrimaryLight"
+                        android:gravity="center_vertical"   android:hint="请输入密码"
+                        android:inputType="textPassword"   android:paddingLeft="5dp"
+                        android:paddingRight="5dp"   android:text="" android:textColorHint="@color/white_gray"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/tvLogin"
+                    style="@style/textview_style_white18"
+                    android:layout_width="match_parent" android:textColor="@color/colorPrimaryDark"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/btn_grey_blue_br"
+                    android:gravity="center"
+                    android:text="登录" />
+
+                <LinearLayout style="@style/layout_style_wwh"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:id="@+id/tvResetPwd"
+                        style="@style/textview_style_gray14"
+                        android:paddingBottom="15dp" android:textColor="@color/gray_blue"
+                        android:paddingTop="10dp"
+                        android:text="忘记密码？"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </com.qlp2p.doctorcar.ui.ScrollViewExt>
+    <LinearLayout android:id="@+id/ll_top" android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_top_blue"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

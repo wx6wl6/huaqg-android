@@ -1,0 +1,186 @@
+<resources>
+    <string name="app_name">Doctor Car</string>
+    <string name="error_msg_network">网路连接错误。</string>
+    <string name="error_msg_content">服务器错误。</string>
+    <string name="error_msg_upload">上传失败。</string>
+
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+
+    <!-- RefreashTabView -->
+
+    <string name="action_settings">Settings</string>
+    <string name="page_tab1">Tab1</string>
+    <string name="page_tab2">Tab2</string>
+    <string name="page_tab3">Tab3</string>
+    <string name="head_title_desc">该demo包含上滑悬浮头部，同时上下拉可刷新数据，可以左右滑动切换tab</string>
+
+    <!--  -->
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">释放刷新</string>
+    <string name="pull_to_refresh_refreshing_label">正在刷新</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which landlordRequire it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">上拉加载</string>
+    <string name="pull_to_refresh_from_bottom_release_label">释放加载</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">正在加载</string>
+
+    <!--issue-->
+    <string name="issue1">输入投资金额，PC端点击输入框右侧使用现金券按钮弹出选择现金券页面，APP会直接选择一张最合适的，可点击选择其他现金券。选择完成后点击投标按钮，满标审核通过后，现金券金额会以现金的方式返还到现金余额账户中。</string>
+    <string name="issue2">1.若显示第三方金额不足，请及时充值。\n2.若显示该标的已经投满，请选择投其他超标中得标的。</string>
+    <string name="issue3">您可通过一下渠道具体查看:\n电脑端: 在【我的账号】-【投资管理】-【待收明细】 查看记录;\nAPP端: 打开【学信贷】APP登录您的账号，在【我的】-【收益详情】即可查看购买的项目;</string>
+    <string name="issue4">已投资的标的不能撤回，但未到期的投资标的若满足债权转让规则可以申请债权转让，如有其它投资人愿意购买您转让的标的，则您可以提前拿回资金，然后申请提现。</string>
+
+
+    <string-array name="color_sp">
+        <item>未查</item>
+        <item>黑色</item>
+        <item>白色</item>
+        <item>银色</item>
+        <item>灰色</item>
+        <item>红色</item>
+        <item>蓝色</item>
+        <item>黄色</item>
+        <item>金色</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="zuoqian"> <!--  左前    -->
+        <item >#20#拍摄左前45度角整车照片（条件受限可拍右前）#5#3#</item>
+        <item >#21#左A柱#1##</item>
+        <item >#22#左后视镜#2##</item>
+        <item >#23#左前大灯#2##</item>
+        <item >#24#左前保险杠#2##</item>
+        <item >#25#左前翼子板#2##</item>
+        <item >#26#左前悬挂结构件#1##</item>
+    </string-array>
+
+    <string-array name="zuohou"> <!--  左后    -->
+        <item >#27#左C柱#1##</item>
+        <item >#28#左后尾灯#2##</item>
+        <item >#29#左后保险杠#2##</item>
+        <item >#30#左后翼子板#2##</item>
+        <item >#31#左后悬挂结构件#1##</item>
+    </string-array>
+
+    <string-array name="youqian"> <!--  右前    -->
+        <item >#32#从右前门拍摄驾驶舱照片#5#9#</item>
+        <item >#33#右A柱#1##</item>
+        <item >#34#右后视镜#2##</item>
+        <item >#35#右前大灯#2##</item>
+        <item >#36#右前保险杠#2##</item>
+        <item >#37#右前翼子板#2##</item>
+        <item >#38#右前悬挂结构件#1##</item>
+    </string-array>
+
+    <string-array name="youhou"> <!--  右后    -->
+        <item >#39#拍摄右后45度角整车照片（条件受限可拍左后）#5#5#</item>
+        <item >#40#从后门拍摄后座照片#5#7#</item>
+        <item >#81#从后座拍摄中控台整体照片#5#8#</item>
+        <item >#41#右C柱#1##</item>
+        <item >#42#右后尾灯#2##</item>
+        <item >#43#右后保险杠#2##</item>
+        <item >#44#右后翼子板#2##</item>
+        <item >#45#右后悬挂结构件#1##</item>
+    </string-array>
+
+    <string-array name="zuoce"> <!--  左侧    -->
+        <item >#46#左前车门内面#2##</item>
+        <item >#47#左前车门外面#2##</item>
+        <item >#48#左B柱#1##</item>
+        <item >#49#左后车门内面#2##</item>
+        <item >#50#左后车门外面#2##</item>
+    </string-array>
+
+    <string-array name="youce"> <!--  右侧    -->
+        <item >#51#拍摄右侧整车照片（条件受限可拍左侧）#5#4#</item>
+        <item >#52#右前车门内面#2##</item>
+        <item >#53#右前车门外面#2##</item>
+        <item >#54#右B柱#1##</item>
+        <item >#55#右后车门内面#2##</item>
+        <item >#56#右后车门外面#2##</item>
+    </string-array>
+
+    <string-array name="zhengqian"> <!--  正前   发动机舱 -->
+        <item >#57#拍摄正前整车照片#5#2#</item>
+        <item >#58#请拍摄发动机舱整体照片#5#10#</item>
+        <item >#59#请拍摄发动机舱左侧局部照片#5#11#</item>
+        <item >#60#请拍摄发动机舱右侧局部照片#5#12#</item>
+        <item >#61#发动机舱盖表面#2##</item>
+        <item >#62#前挡风玻璃#2##</item>
+        <item >#63#左前纵梁#1##</item>
+        <item >#64#前横梁#1##</item>
+        <item >#65#右前纵梁#1##</item>
+        <item >#66#缸盖外是否有机油渗漏#7##</item>
+        <item >#67#前翼子板内缘、水箱框架、横拉梁有无凹凸或修复痕迹#7##</item>
+        <item >#68#散热器格栅有无破损#7##</item>
+        <item >#69#发动机舱盖锁止有无异常#4##</item>
+        <item >#70#发动机舱盖支撑杆有无异常#4##</item>
+    </string-array>
+
+    <string-array name="zhenghou">  <!--  正后   -->
+        <item >#71#拍摄后尾箱整体照片#5#6#</item>
+        <item >#72#备胎有无及磨损#8##</item>
+        <item >#73#随车工具完整，无缺失（含千斤顶、轮胎扳手、三角牌、灭火器）#4##</item>
+        <item >#74#后尾箱结构件#1##</item>
+        <item >#75#后尾箱支撑杆功能有无异常#4##</item>
+        <item >#76#后尾箱锁止#4##</item>
+        <item >#77#后挡风玻璃#2##</item>
+        <item >#78#后尾箱盖外观#2##</item>
+        <item >#79#排气声音及颜色有无异常#4##</item>
+    </string-array>
+
+    <string-array name="chedingA"> <!--  车顶A  驾驶舱  -->
+        <item >#80#拍摄仪表盘照片#5#1#</item>
+        <item >#82#车内是否整洁，无异味#4##</item>
+        <item >#83#车辆启动有无异常（启动时间大于5秒，或不能一次成功）#4##</item>
+        <item >#84#仪表指示灯(故障灯)有无异常#4##</item>
+        <item >#85#方向盘是否空旷（自由行程转角大于15度）#4##</item>
+        <item >#86#仪表台是否无划痕，配件是否无缺失#7##</item>
+        <item >#87#排档把手柄及护罩是否完好、无破损#7##</item>
+        <item >#88#雨刮器工作有无异常#4##</item>
+        <item >#89#车外后视镜调节有无异常#4##</item>
+        <item >#90#车内后视镜外观及功能有无异常#4##</item>
+        <item >#91#座椅调节及加热功能有无异常#4##</item>
+        <item >#92#门窗玻璃升降有无异常#4##</item>
+        <item >#93#音响功能有无异常#4##</item>
+        <item >#94#车辆顶棚是否无破损、裂缝、松动及污迹#7##</item>
+        <item >#95#座椅是否完整、无破损#7##</item>
+        <item >#96#车内是否有泡水痕迹#7##</item>
+        <item >#97#天窗移动、开闭有无异常#4##</item>
+        <item >#98#空调功能有无异常（开关调节、制冷、出风）#4##</item>
+        <item >#99#发动机在冷、热车下怠速是否稳定#4##</item>
+        <item >#100#发动机空挡加速声音是否正常、无异响#4##</item>
+        <item >#101#安全带结构是否完整、功能有无异常#4##</item>
+        <item >#102#泊车辅助系统有无异常#4##</item>
+        <item >#103#各类灯光及调节有无异常#4##</item>
+        <item >#104#车门锁止有无异常#4##</item>
+    </string-array>
+
+    <string-array name="chedingB"> <!--  车顶B  车顶/全局  -->
+        <item >#105#车顶（外部）#2##</item>
+        <item >#106#全车车窗玻璃#2##</item>
+        <item >#107#全车轮胎磨损程度(很新即正常)-以磨损最严重的为准#7##</item>
+        <item >#108#全车轮毂磨损程度（很新即正常）-以磨损最严重的为准#3##</item>
+        <item >#109#加装改装#3##</item>
+        <item >#110#全车备注#3##</item>
+    </string-array>
+
+    <string-array name="dipan"> <!--  底盘  -->
+        <item >#111#发动机油底壳有无渗漏#8##</item>
+        <item >#112#变速箱体有无渗漏#8##</item>
+        <item >#113#减震器有无渗漏#8##</item>
+        <item >#114#减震弹簧有无损坏#8##</item>
+    </string-array>
+
+    <string-array name="lushi"> <!--  路试    -->
+        <item >#115#车辆提速是否异常（与车型排量是否相符）#6##</item>
+        <item >#116#涡轮增压车涡轮工作是否异常#6##</item>
+        <item >#117#变速箱工作是否异常#6##</item>
+        <item >#118#行驶是否跑偏#6##</item>
+        <item >#119#行驶过程中车辆底盘部位是否无异响#6##</item>
+        <item >#120#行驶过程中车辆转向部位是否无异响#6##</item>
+        <item >#121#车辆刹车性能是否有异常（启动前、启动后、刹车性能、刹车跑偏）#6##</item>
+        <item >#122#驻车制动工作是否异常#6##</item>
+        <item >#123#路试其它补充说明#3##</item>
+    </string-array>
+</resources>

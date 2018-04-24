@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qlp2p.doctorcar">
+
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
+    </uses-permission>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READER_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+
+    <!-- SMS and PHONE -->
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACTION_CALL" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:name="com.qlp2p.doctorcar.common.MyGlobal"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <activity android:name="com.qlp2p.doctorcar.main.SplashActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".appraiser.JingZhenGuActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity android:name=".appraiser.JingZhenGuResultActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity android:name="com.qlp2p.doctorcar.main.MainTabActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.main.LoginActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name="com.qlp2p.doctorcar.main.WelcomeActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.main.ResetPwdActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name=".crop.ImageCropActivity"  android:configChanges="orientation|screenSize|screenLayout"  android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name="com.qlp2p.doctorcar.agent.BrandListActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:name="com.qlp2p.doctorcar.agent.CarTypeListActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.agent.CarListActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".common.ImagePagerActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--业务员-->
+        <activity android:name="com.qlp2p.doctorcar.agent.AgentOrderActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.agent.AgentWodeActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.agent.AgentPjOrderDetailActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.agent.RequestSuccessActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--评估员-->
+        <activity android:name="com.qlp2p.doctorcar.appraiser.AppriserOrderActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.appraiser.AppriserWodeActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.appraiser.AppraiserPjOrderDetailActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+
+        <!--检测员-->
+
+        <activity android:name="com.qlp2p.doctorcar.checker.CheckerOrderActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.checker.CheckerWodeActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name="com.qlp2p.doctorcar.checker.CheckerOrderDetailActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--首页-->
+        <activity android:name="com.qlp2p.doctorcar.home.HomeActivity" android:screenOrientation="portrait" android:configChanges="screenSize|orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+    </application>
+
+</manifest>
