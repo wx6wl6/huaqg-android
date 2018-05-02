@@ -68,6 +68,7 @@ import com.qlp2p.doctorcar.db.LocalCityTable;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.popup.SelectAreaPopWindow;
 import com.qlp2p.doctorcar.ui.ScrollViewExt;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -303,6 +304,7 @@ public class AppraiserPjOrderDetailActivity extends BaseActivity implements Sele
         }
     }
 
+
     public void getOrderInfo() {
         if (ServerUrl.isNetworkConnected(mContext)) {
             try {
@@ -375,7 +377,7 @@ public class AppraiserPjOrderDetailActivity extends BaseActivity implements Sele
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -590,7 +592,7 @@ public class AppraiserPjOrderDetailActivity extends BaseActivity implements Sele
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -598,7 +600,7 @@ public class AppraiserPjOrderDetailActivity extends BaseActivity implements Sele
         ;
     };
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
+
     @Override
     public void selectArea(String province, String city) {
         tvCarArea.setText(city);

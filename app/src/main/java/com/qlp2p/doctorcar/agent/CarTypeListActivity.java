@@ -21,7 +21,7 @@ import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
 import com.qlp2p.doctorcar.common.MyConstants;
 import com.qlp2p.doctorcar.data.BrandInfo;
-import com.qlp2p.doctorcar.data.MessageEvent;
+import com.qlp2p.doctorcar.event.SelectCarTypeEvent;
 import com.qlp2p.doctorcar.net.ServerUrl;
 
 import org.greenrobot.eventbus.EventBus;
@@ -61,7 +61,7 @@ public class CarTypeListActivity extends BaseActivity {
     }
 
     private void initViews() {
-        tvTopTitle.setText("选择车系");
+        tvTopTitle.setText("选择品牌");
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -77,11 +77,14 @@ public class CarTypeListActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         if (brandList == null || brandList.size() < 1) {
             brandList = new ArrayList<>();
             getInfo();
         }
     }
+
+
 
     @Override
     protected void onDestroy() {
@@ -135,7 +138,7 @@ public class CarTypeListActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -211,7 +214,7 @@ public class CarTypeListActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
+    public void onMessageEvent(SelectCarTypeEvent event) {
         if(event.isMsgOf(MyConstants.SEL_CAR_NAME))
             finish();
     }

@@ -8,9 +8,9 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.ui.HackyViewPager;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -78,6 +78,8 @@ public class ImagePagerActivity extends BaseActivity {
         mPager.setCurrentItem(pagerPosition);
     }
 
+
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putInt(STATE_POSITION, mPager.getCurrentItem());
@@ -122,15 +124,7 @@ public class ImagePagerActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
 
 }

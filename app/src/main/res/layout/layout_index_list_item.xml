@@ -5,13 +5,14 @@
     android:orientation="vertical">
 
     <TextView
+        android:gravity="center_vertical"
         android:id="@+id/index"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight"
-        android:padding="10dp"
+        android:layout_height="35dp"
+        android:background="@color/color_item"
+        android:paddingLeft="15dp"
         android:text="A"
-        android:textColor="@color/white"
+        android:textColor="@color/header_font"
         android:textSize="14dp" />
 
     <LinearLayout android:id="@+id/ll_item"

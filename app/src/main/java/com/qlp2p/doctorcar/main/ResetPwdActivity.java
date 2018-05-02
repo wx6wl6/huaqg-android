@@ -1,13 +1,9 @@
 package com.qlp2p.doctorcar.main;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +11,6 @@ import android.widget.TextView;
 
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
-import com.qlp2p.doctorcar.common.MyConstants;
 import com.qlp2p.doctorcar.common.Utils;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.ui.ClickEffectImageView;
@@ -184,7 +179,7 @@ public class ResetPwdActivity extends BaseActivity {
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
         }
@@ -258,7 +253,7 @@ public class ResetPwdActivity extends BaseActivity {
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
         }

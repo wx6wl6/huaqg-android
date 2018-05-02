@@ -44,6 +44,7 @@ import com.qlp2p.doctorcar.main.ResetPwdActivity;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.ui.RoundedImageView;
 import com.suke.widget.SwitchButton;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -161,7 +162,7 @@ public class CheckerWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -185,10 +186,7 @@ public class CheckerWodeActivity extends BaseActivity {
         myReceiver = new MyBroadcastReceiver();
         LocalBroadcastManager.getInstance(mContext).registerReceiver(myReceiver, myIntentFilter);
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+
 
 
     @Override
@@ -296,7 +294,7 @@ public class CheckerWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -512,7 +510,7 @@ public class CheckerWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }

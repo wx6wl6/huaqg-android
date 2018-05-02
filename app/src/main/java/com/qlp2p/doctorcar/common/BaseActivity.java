@@ -1,6 +1,5 @@
 package com.qlp2p.doctorcar.common;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +14,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.qlp2p.doctorcar.R;
-import com.qlp2p.doctorcar.common.MyBaseDialog;
-import com.qlp2p.doctorcar.common.MyGlobal;
 import com.qlp2p.doctorcar.data.MessageEvent;
 import com.qlp2p.doctorcar.main.LoginActivity;
-import com.qlp2p.doctorcar.net.MyHttpConnection;
 import com.wangli.FinalHttp;
 
 import org.greenrobot.eventbus.EventBus;
@@ -108,11 +101,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         MyGlobal.picOnlyOnWifi = Utils.getBooleanPreferences(mContext, "picMode3G");
         initImageOption();
 
+
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause(){
         super.onPause();
         System.gc();
     }

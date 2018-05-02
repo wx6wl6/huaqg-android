@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Doctor Car</string>
+    <string name="app_name">花千估</string>
     <string name="error_msg_network">网路连接错误。</string>
     <string name="error_msg_content">服务器错误。</string>
     <string name="error_msg_upload">上传失败。</string>
@@ -21,7 +21,7 @@
 
     <!-- Just use standard Pull Down String when pulling up. These can be set for languages which landlordRequire it -->
     <string name="pull_to_refresh_from_bottom_pull_label">上拉加载</string>
-    <string name="pull_to_refresh_from_bottom_release_label">释放加载</string>
+    <string name="pull_to_refresh_from_bottom_release_label">释放刷新</string>
     <string name="pull_to_refresh_from_bottom_refreshing_label">正在加载</string>
 
     <!--issue-->

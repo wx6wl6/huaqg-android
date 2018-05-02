@@ -181,7 +181,33 @@ public class LocalCityTable {
         cursor.close();
         return map;
     }
+    /**
+     * 获取城市
+     * @param
+     */
+    public List<String> getAllCity() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from allProvince", null);
 
+        HashMap<String, List<String>> map = new HashMap<>();
+        List<String> citys = null;
+        while (cursor.moveToNext()) {
+            Province province = new Province();
+            province.setId(cursor.getString(cursor.getColumnIndex(PROVINCE_ID)));
+            province.setName(cursor.getString(cursor.getColumnIndex(PROVINCE_NAME)));
+            Cursor cursorCity = db.rawQuery("select * from allCity where provinceId =" + cursor
+                    .getString(cursor.getColumnIndex(PROVINCE_ID)), null);
+            citys = new ArrayList<>();
+            while (cursorCity.moveToNext()) {
+                citys.add(cursorCity.getString(cursorCity.getColumnIndex(CITY_NAME)));
+            }
+            cursorCity.close();
+            map.put(cursor.getString(cursor.getColumnIndex(PROVINCE_NAME)), citys);
+            cursorCity.close();
+        }
+        cursor.close();
+        return citys;
+    }
 
     /**
      * 根据城市名获取城市ID

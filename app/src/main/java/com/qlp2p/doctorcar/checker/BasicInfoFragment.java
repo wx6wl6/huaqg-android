@@ -413,7 +413,7 @@ public class BasicInfoFragment extends BaseFragment implements SelectAreaPopWind
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
         }

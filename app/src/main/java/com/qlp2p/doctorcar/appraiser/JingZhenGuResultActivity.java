@@ -2,29 +2,22 @@ package com.qlp2p.doctorcar.appraiser;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.gson.Gson;
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.agent.AgentPjOrderDetailActivity;
-import com.qlp2p.doctorcar.agent.BrandListActivity;
 import com.qlp2p.doctorcar.common.BaseActivity;
-import com.qlp2p.doctorcar.common.ButCommonUtils;
-import com.qlp2p.doctorcar.db.LocalCityTable;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.popup.SelectAreaPopWindow;
+import com.umeng.analytics.MobclickAgent;
 
 import org.apache.commons.lang3.StringUtils;
-import org.greenrobot.eventbus.EventBus;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;

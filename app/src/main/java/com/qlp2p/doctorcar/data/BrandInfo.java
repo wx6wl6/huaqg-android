@@ -10,7 +10,6 @@ public class BrandInfo {
 	public String name;
 	public String logo;
 	public String initial;
-
 	//车系
 	public String fullname;
 	//车型
@@ -24,14 +23,13 @@ public class BrandInfo {
 		if(obj == null) return;
 		
 		try {
-
 			id = obj.getString("id");
 			name = obj.getString("name");
 			logo = obj.getString("logo");
 			initial = obj.getString("initial");
-
 			fullname = obj.getString("fullname");
 			yeartype = obj.getString("yeartype");
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

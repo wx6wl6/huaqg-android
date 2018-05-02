@@ -3,13 +3,13 @@
     android:layout_width="match_parent" android:layout_height="50dip"
     android:background="@color/colorPrimary">
     <TextView android:id="@+id/tvTopTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center"
-		android:text="花千估" android:textColor="@color/white" android:textSize="18dip" android:singleLine="true"
+		android:text="p2p" android:textColor="@color/white" android:textSize="18dip" android:singleLine="true"
 		android:maxLength="15"
 		android:layout_centerInParent="true"/>
 	<com.qlp2p.doctorcar.ui.ClickEffectImageView
         android:id="@+id/ivTopBack"  android:layout_centerVertical="true"
 	    android:layout_width="35dp" android:layout_height="35dp" android:scaleType="centerInside"
-		android:src="@drawable/title_bar_back_white" android:visibility="visible"
+		android:src="@drawable/title_bar_back_white_new"
 		android:paddingLeft="8dip" android:paddingRight="6dip" android:paddingTop="8dip" android:paddingBottom="8dip"/>
  	<TextView android:id="@+id/tvTopRight" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="match_parent"
         android:text="搜索" android:textColor="@drawable/top_right_selectable" android:textSize="16dip" android:gravity="center_vertical"

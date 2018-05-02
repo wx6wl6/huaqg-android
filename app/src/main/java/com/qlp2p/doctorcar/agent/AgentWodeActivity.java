@@ -21,8 +21,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.oss.ClientConfiguration;
 import com.alibaba.sdk.android.oss.ClientException;
 import com.alibaba.sdk.android.oss.OSS;
@@ -36,7 +34,6 @@ import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvide
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
-import com.google.gson.Gson;
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
 import com.qlp2p.doctorcar.common.MyConstants;
@@ -46,6 +43,7 @@ import com.qlp2p.doctorcar.data.MessageEvent;
 import com.qlp2p.doctorcar.main.ResetPwdActivity;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.ui.RoundedImageView;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -92,6 +90,7 @@ public class AgentWodeActivity extends BaseActivity {
     }
 
     private void initView() {
+        tvVersion.setText(getVerName(AgentWodeActivity.this));
         tvName.setText("您好，"+ myglobal.user.orgName+"用户"+myglobal.user.userName);
         showImgWithGlid(myglobal.user.userAvatar, ivUser, R.drawable.icon_user_def);
     }
@@ -113,15 +112,6 @@ public class AgentWodeActivity extends BaseActivity {
         LocalBroadcastManager.getInstance(mContext).registerReceiver(myReceiver, myIntentFilter);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
 
     @Override
@@ -231,7 +221,7 @@ public class AgentWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -448,7 +438,7 @@ public class AgentWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -476,5 +466,15 @@ public class AgentWodeActivity extends BaseActivity {
                 }
             }
         }
+    }
+    public static String getVerName(Context context) {
+        String verName = "";
+        try {
+            verName = context.getPackageManager().
+                    getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return verName;
     }
 }

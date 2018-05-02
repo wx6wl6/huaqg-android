@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +22,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -51,6 +53,7 @@ import com.alibaba.sdk.android.oss.common.auth.OSSPlainTextAKSKCredentialProvide
 import com.alibaba.sdk.android.oss.internal.OSSAsyncTask;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.bigkoo.pickerview.TimePickerView;
 import com.google.gson.Gson;
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
@@ -64,16 +67,22 @@ import com.qlp2p.doctorcar.data.CarImgInfo;
 import com.qlp2p.doctorcar.data.MessageEvent;
 import com.qlp2p.doctorcar.data.Province;
 import com.qlp2p.doctorcar.db.LocalCityTable;
+import com.qlp2p.doctorcar.event.AgentPjOrderDetailEvent;
+import com.qlp2p.doctorcar.event.SelectCarTypeEvent;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.popup.SelectAreaPopWindow;
+import com.qlp2p.doctorcar.ui.ClickEffectImageView;
 import com.qlp2p.doctorcar.ui.ScrollViewExt;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import butterknife.Bind;
@@ -81,8 +90,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAreaPopWindow.OnSelectListener {
-
+public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAreaPopWindow
+        .OnSelectListener, View.OnTouchListener {
 
     @Bind(R.id.tvTopTitle)
     TextView tvTopTitle;
@@ -136,12 +145,23 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     Button btnRepReport;
     @Bind(R.id.ll_modify)
     LinearLayout llModify;
+
+    @Bind(R.id.btn_set_price)
+    Button btnSetPrice;
+    @Bind(R.id.btn_report)
+    Button btnReport;
+    @Bind(R.id.btn_save)
+    Button btnSave;
+    @Bind(R.id.ivTopBack)
+    ClickEffectImageView ivTopBack;
+
     private boolean m_bPermissionGrant = false;
     private String m_strImgFile = "";
     private String m_TmpFile = "";
     int selImg = 0;
 
-    String[] imgTitle = {"行驶证", "登记证", "左前45度", "发动机舱整体", "铭牌", "仪表盘", "左前门拍驾驶舱", "后座拍中控整体", "右后门拍后座",
+    String[] imgTitle = {"行驶证", "登记证", "左前45度", "发动机舱整体", "铭牌", "仪表盘", "左前门拍驾驶舱", "后座拍中控整体",
+            "右后门拍后座",
             "右后45度", "正前整车", "发动机舱左", "发动机舱右", "右侧整车", "后尾箱整体", "自定义", "自定义", "自定义"};
     ArrayList<CarImgInfo> arrImgUrl;
     ArrayList<BankInfo> bankList;
@@ -152,7 +172,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     private SelectAreaPopWindow selectAreaPopWindow;
 
     int reqType = 0;
-    String numberDate = "", typeName = "", mileAge = "", lenderName = "", regionName = "", orderNo = "", orderType = "0", reportStatus = "0", bankId = "";
+    String numberDate = "", typeName = "", mileAge = "", lenderName = "", regionName = "",
+            orderNo = "", orderType = "0", reportStatus = "0", bankId = "";
 
     String orderId = "", typeShort = "";
 
@@ -164,7 +185,11 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         EventBus.getDefault().register(this);
 
         orderId = getIntent().getStringExtra("orderId");
-
+        if (orderId != null) {
+            ivTopBack.setVisibility(View.VISIBLE);
+        } else {
+            ivTopBack.setVisibility(View.GONE);
+        }
         initView();
         initBroadCast();
     }
@@ -181,6 +206,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     }
 
     private void initView() {
+        etName.setOnTouchListener(this);
+        etMileage.setOnTouchListener(this);
 
         bankList = new ArrayList<>();
 
@@ -221,7 +248,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             info.title = imgTitle[i];
             arrImgUrl.add(info);
         }
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context
+                .LAYOUT_INFLATER_SERVICE);
         glImg.removeAllViews();
 
         int itemWidth = (myglobal.SCR_WIDTH - Utils.dp2Pixel(mContext, 40)) / 2;
@@ -231,12 +259,18 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             View dayViewItem = inflater.inflate(R.layout.layout_car_image_item, null);
 
             ImgViewHolder viewHolder = new ImgViewHolder(dayViewItem);
-            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewHolder.ivImg.getLayoutParams();
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewHolder.ivImg
+                    .getLayoutParams();
             params.width = itemWidth;
             params.height = itemHeight;
             viewHolder.ivImg.setLayoutParams(params);
             arrImgUrl.get(i).ivImg = viewHolder.ivImg;
             viewHolder.tvTitle.setText(info.title);
+            if (i < 9 || i == 10) {
+                viewHolder.tv_title_left.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.tv_title_left.setVisibility(View.INVISIBLE);
+            }
             glImg.addView(dayViewItem);
 
             final int sel = i;
@@ -360,6 +394,7 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
                                     selBank = i + 1;
                                 }
                             }
+
                             setBankSpinnerAdapter();
 
                             if (!TextUtils.isEmpty(orderId)) {
@@ -423,7 +458,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         svMain.setVisibility(View.VISIBLE);
     }
 
-    @OnClick({R.id.ivTopBack, R.id.ll_type, R.id.tv_date, R.id.tv_car_area, R.id.btn_set_price, R.id.btn_report, R.id.btn_save, R.id.btn_rep_report})
+    @OnClick({R.id.ivTopBack, R.id.ll_type, R.id.tv_date, R.id.tv_car_area, R.id.btn_set_price, R
+            .id.btn_report, R.id.btn_save, R.id.btn_rep_report})
     public void onClick(View view) {
         Intent it;
         switch (view.getId()) {
@@ -434,11 +470,12 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
                 finish();
                 break;
             case R.id.ll_type:
-                it = new Intent(mContext, BrandListActivity.class);
+                it = new Intent(mContext, BrandListReleaseActivity.class);
                 startActivity(it);
                 break;
             case R.id.tv_date:
-                setDate();
+                initPickerTime();
+//                setDate();
                 break;
             case R.id.tv_car_area:
                 if (!ButCommonUtils.isFastDoubleClick()) {
@@ -448,7 +485,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
                         if (selectAreaPopWindow != null && selectAreaPopWindow.isShowing()) return;
                         selectAreaPopWindow = new SelectAreaPopWindow(mContext);
                         selectAreaPopWindow.setOnSelectListener(this);
-                        selectAreaPopWindow.showAtLocation(llMain, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                        selectAreaPopWindow.showAtLocation(llMain, Gravity.BOTTOM | Gravity
+                                .CENTER_HORIZONTAL, 0, 0);
                     }
                 }
                 break;
@@ -482,6 +520,16 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             shortToast("请选择上牌时间～～");
             return;
         }
+        for (int i = 0; i < 9; i++) {
+            if (TextUtils.isEmpty(arrImgUrl.get(i).imgUrl)) {
+                shortToast("请上传" + arrImgUrl.get(i).title + "照片～～");
+                return;
+            }
+        }
+        if (TextUtils.isEmpty(arrImgUrl.get(10).imgUrl)) {
+            shortToast("请上传" + arrImgUrl.get(10).title + "照片～～");
+            return;
+        }
         Utils.showQuestionView(mContext, "温謦提示", "确定要预估价格吗？", "确定", "取消",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -511,11 +559,15 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             shortToast("请选择上牌时间～～");
             return;
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             if (TextUtils.isEmpty(arrImgUrl.get(i).imgUrl)) {
                 shortToast("请上传" + arrImgUrl.get(i).title + "照片～～");
                 return;
             }
+        }
+        if (TextUtils.isEmpty(arrImgUrl.get(10).imgUrl)) {
+            shortToast("请上传" + arrImgUrl.get(10).title + "照片～～");
+            return;
         }
         Utils.showQuestionView(mContext, "温謦提示", "确定要预估价格吗？", "确定", "取消",
                 new DialogInterface.OnClickListener() {
@@ -547,13 +599,15 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             return;
         }
 
-        if ("1".equals(orderType)) { //申请报告
-            for (int i = 0; i < 10; i++) {
-                if (TextUtils.isEmpty(arrImgUrl.get(i).imgUrl)) {
-                    shortToast("请上传" + arrImgUrl.get(i).title + "照片～～");
-                    return;
-                }
+        for (int i = 0; i < 9; i++) {
+            if (TextUtils.isEmpty(arrImgUrl.get(i).imgUrl)) {
+                shortToast("请上传" + arrImgUrl.get(i).title + "照片～～");
+                return;
             }
+        }
+        if (TextUtils.isEmpty(arrImgUrl.get(10).imgUrl)) {
+            shortToast("请上传" + arrImgUrl.get(10).title + "照片～～");
+            return;
         }
         requestPrice(2);
     }
@@ -573,11 +627,15 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             return;
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             if (TextUtils.isEmpty(arrImgUrl.get(i).imgUrl)) {
                 shortToast("请上传" + arrImgUrl.get(i).title + "照片～～");
                 return;
             }
+        }
+        if (TextUtils.isEmpty(arrImgUrl.get(10).imgUrl)) {
+            shortToast("请上传" + arrImgUrl.get(10).title + "照片～～");
+            return;
         }
         requestPrice(3);
     }
@@ -644,7 +702,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
                     try {
                         String status = result.get("result_code") + "";
                         if ("200".equals(status)) {
-                            MessageEvent event = new MessageEvent(MyConstants.AGENT_SUBMIT_ORDER_SUCCESS);
+                            MessageEvent event = new MessageEvent(MyConstants
+                                    .AGENT_SUBMIT_ORDER_SUCCESS);
                             postEvent(event);
 
                             Intent it = new Intent(mContext, RequestSuccessActivity.class);
@@ -656,7 +715,7 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
                                 it.putExtra("content", "发布成功");
                             }
                             startActivity(it);
-                            finish();
+
                         } else if ("401".equals(status)) {
                             String message = result.get("message") + "";
                             shortToast(message);
@@ -724,14 +783,18 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
 
     private void requestPermission() {
         try {
-            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(AgentPjOrderDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission
+                    .WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(AgentPjOrderDetailActivity.this, new
+                                String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQ_PERMISSION);
                 m_bPermissionGrant = false;
                 return;
             }
-            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(AgentPjOrderDetailActivity.this, new String[]{Manifest.permission.CAMERA}, REQ_PERMISSION);
+            if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(AgentPjOrderDetailActivity.this, new
+                        String[]{Manifest.permission.CAMERA}, REQ_PERMISSION);
                 m_bPermissionGrant = false;
                 return;
             }
@@ -743,7 +806,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[]
+            grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQ_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -761,7 +825,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         // 最大可选择图片数量
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 1);
         // 选择模式
-        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_SINGLE);
+        intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity
+                .MODE_SINGLE);
         // 默认选择
         if (!m_strImgFile.equals("")) {
             ArrayList<String> arrSelImg = new ArrayList<String>();
@@ -787,7 +852,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         switch (requestCode) {
             case REQUEST_CODE_GALLERY:
                 try {
-                    ArrayList<String> arrSelImg = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                    ArrayList<String> arrSelImg = data.getStringArrayListExtra
+                            (MultiImageSelectorActivity.EXTRA_RESULT);
                     if (arrSelImg == null) arrSelImg = new ArrayList<String>();
                     if (arrSelImg.size() > 0) {
                         m_strImgFile = arrSelImg.get(0);
@@ -846,7 +912,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     }
 
     private void initOSS() {
-        OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider(MyConstants.OssAccessKeyId, MyConstants.OssAccessKeySecret);
+        OSSCredentialProvider credentialProvider = new OSSPlainTextAKSKCredentialProvider
+                (MyConstants.OssAccessKeyId, MyConstants.OssAccessKeySecret);
 
         ClientConfiguration conf = new ClientConfiguration();
         conf.setConnectionTimeout(15 * 1000); // 连接超时，默认15秒
@@ -854,7 +921,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         conf.setMaxConcurrentRequest(5); // 最大并发请求书，默认5个
         conf.setMaxErrorRetry(2); // 失败后最大重试次数，默认2次
         OSSLog.enableLog();
-        oss = new OSSClient(getApplicationContext(), MyConstants.OssEndpoint, credentialProvider, conf);
+        oss = new OSSClient(getApplicationContext(), MyConstants.OssEndpoint, credentialProvider,
+                conf);
     }
 
     // 从本地文件上传，使用非阻塞的异步接口
@@ -873,21 +941,25 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             }
         });
 
-        OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest, PutObjectResult>() {
+        OSSAsyncTask task = oss.asyncPutObject(put, new OSSCompletedCallback<PutObjectRequest,
+                PutObjectResult>() {
             @Override
             public void onSuccess(PutObjectRequest request, PutObjectResult result) {
                 //hideProgress();
-                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("upload_pic_success"));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent
+                        ("upload_pic_success"));
                 Log.e("PutObject", "UploadSuccess");
                 Log.e("ETag", result.getETag());
                 Log.e("RequestId", result.getRequestId());
             }
 
             @Override
-            public void onFailure(PutObjectRequest request, ClientException clientExcepion, ServiceException serviceException) {
+            public void onFailure(PutObjectRequest request, ClientException clientExcepion,
+                                  ServiceException serviceException) {
                 hideProgress();
 
-                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent("upload_pic_fail"));
+                LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent
+                        ("upload_pic_fail"));
                 // 请求异常
                 if (clientExcepion != null) {
                     // 本地异常如网络异常等
@@ -1135,6 +1207,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     class ImgViewHolder {
         @Bind(R.id.tv_title)
         TextView tvTitle;
+        @Bind(R.id.tv_title_left)
+        TextView tv_title_left;
         @Bind(R.id.iv_img)
         ImageView ivImg;
         @Bind(R.id.tv_detail)
@@ -1186,8 +1260,10 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-            DatePickerDialog dialog = new DatePickerDialog(mContext, android.R.style.Theme_Holo_Light_Dialog, this, year, month, 1);
-            ((ViewGroup) ((ViewGroup) dialog.getDatePicker().getChildAt(0)).getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
+            DatePickerDialog dialog = new DatePickerDialog(mContext, android.R.style
+                    .Theme_Holo_Light_Dialog, this, year, month, 1);
+            ((ViewGroup) ((ViewGroup) dialog.getDatePicker().getChildAt(0)).getChildAt(0))
+                    .getChildAt(2).setVisibility(View.GONE);
             return dialog;
         }
 
@@ -1200,7 +1276,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             Calendar c = Calendar.getInstance();
             int startYear = c.get(Calendar.YEAR);
             int startMonth = c.get(Calendar.MONTH);
-            if (nYear > startYear || (nYear == startYear && nMonth > startMonth) || (nYear == startYear && nMonth == startMonth)) {
+            if (nYear > startYear || (nYear == startYear && nMonth > startMonth) || (nYear ==
+                    startYear && nMonth == startMonth)) {
                 nYear = startYear;
                 nMonth = startMonth + 1;
             }
@@ -1217,7 +1294,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             if (intent != null && intent.getAction() != null) {
                 if (intent.getAction().equals("upload_pic_success")) {
                     arrImgUrl.get(selImg).imgUrl = MyConstants.OssPicUrl + UPLOAD_OBJECT;
-                    showImgWithGlid(MyConstants.OssPicUrl + UPLOAD_OBJECT, arrImgUrl.get(selImg).ivImg);
+                    showImgWithGlid(MyConstants.OssPicUrl + UPLOAD_OBJECT, arrImgUrl.get(selImg)
+                            .ivImg);
                     hideProgress();
                 } else if (intent.getAction().equals("upload_pic_fail")) {
                     hideProgress();
@@ -1228,7 +1306,8 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
     }
 
     private void getCityInfo() {
-        if (LocalCityTable.getInstance().getAllProvince().size() == 0 || Utils.getIntPreferences(mContext, "newVersion") == 1) {
+        if (LocalCityTable.getInstance().getAllProvince().size() == 0 || Utils.getIntPreferences
+                (mContext, "newVersion") == 1) {
             if (ServerUrl.isNetworkConnected(this)) {
                 try {
                     HashMap<String, String> fields = new HashMap<String, String>();
@@ -1276,8 +1355,29 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
 
     };
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            switch (v.getId()) {
+                case R.id.et_mileage:
+                    etMileage.setFocusable(true);
+                    etMileage.setFocusableInTouchMode(true);
+                    etMileage.requestFocus();
+
+                    break;
+                case R.id.et_name:
+                    etName.setFocusable(true);
+                    etName.setFocusableInTouchMode(true);
+                    etName.requestFocus();
+
+                    break;
+            }
+        }
+        return false;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
+    public void onMessageEvent(SelectCarTypeEvent event) {
         if (event.isMsgOf(MyConstants.SEL_CAR_NAME)) {
             typeShort = event.getStringExtra("fullName");
             String carName = event.getStringExtra("carName");
@@ -1289,5 +1389,74 @@ public class AgentPjOrderDetailActivity extends BaseActivity implements SelectAr
             }
             tvCarType.setText(carName);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(AgentPjOrderDetailEvent event) {
+        tvOrderNo.setText("");
+        etMileage.setText("");
+        etName.setText("");
+        etName.setFocusable(false);
+        etName.setFocusableInTouchMode(false);
+
+        etMileage.setFocusable(false);
+        etMileage.setFocusableInTouchMode(false);
+
+        tvCarType.setText("");
+        tvDate.setText("");
+        tvCarArea.setText("");
+        setPLSpinnerAdapter();
+        setCKSpinnerAdapter();
+        setBankSpinnerAdapter();
+        for (int i = 0; i < arrImgUrl.size(); i++) {
+            showImgWithGlid("", arrImgUrl.get(i).ivImg);
+        }
+
+    }
+
+    private void initPickerTime() {
+        Calendar selectedDate = Calendar.getInstance();
+        //年
+        int year = selectedDate.get(Calendar.YEAR);
+        //月
+        int month = selectedDate.get(Calendar.MONTH);
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        startDate.set(2000, 1, 0);
+        endDate.set(year, month, 1);
+        selectedDate.set(Calendar.YEAR, 2015);
+        selectedDate.set(Calendar.MONTH, 5);
+        TimePickerView pvTime = new TimePickerView.Builder(this, new TimePickerView
+                .OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+                String format = simpleDateFormat.format(date);
+
+                tvDate.setText(format);
+                tvDate.setTextColor(Color.parseColor("#FF666666"));
+            }
+        })//
+                .setType(new boolean[]{true, true, false, false, false, false})// 默认全部显示
+                .setCancelText("取消")//取消按钮文字
+                .setSubmitText("确定")//确认按钮文字
+                .setContentSize(16)//滚轮文字大小
+                .setTitleSize(18)//标题文字大小
+                .setTitleText("选择日期")//标题文字
+                .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
+                .isCyclic(false)//是否循环滚动
+                .setTitleColor(Color.BLACK)//标题文字颜色
+                .setSubmitColor(Color.parseColor("#0DBDB2"))//确定按钮文字颜色
+                .setCancelColor(Color.parseColor("#0DBDB2"))//取消按钮文字颜色
+                .setTitleBgColor(Color.WHITE)//标题背景颜色 Night mode
+                .setBgColor(Color.TRANSPARENT)//滚轮背景颜色 Night mode
+                .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+                .setRangDate(startDate, endDate)//起始终止年月日设定
+                .setLabel("年", "月", "日", "时", "分", "秒")
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .isDialog(false)//是否显示为对话框样式
+                .build();
+        pvTime.show();
+
     }
 }

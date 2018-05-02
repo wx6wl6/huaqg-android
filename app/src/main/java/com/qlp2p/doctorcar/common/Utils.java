@@ -60,8 +60,6 @@ import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.data.UserInfo;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -381,7 +379,7 @@ public class Utils {
 	}
 
 	private static Bitmap compressImage(Bitmap image) {
-		int zoomW = 100;
+	/*	int zoomW = 100;
 		int zoomH = 100;
 		int zoom = 100;
 		zoomH = 840 * 100/ image.getWidth();
@@ -401,8 +399,8 @@ public class Utils {
 //			options -= 10;//每次都减少5
 //		}
 		ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
-		Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
-		return bitmap;
+		Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片*/
+		return image;
 	}
 	private static  Bitmap getComoressedImage(String path) {
 		Bitmap bitmap = BitmapFactory.decodeFile(path);

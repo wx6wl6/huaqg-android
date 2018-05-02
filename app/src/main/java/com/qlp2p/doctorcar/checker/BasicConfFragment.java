@@ -387,7 +387,7 @@ public class BasicConfFragment extends BaseFragment {
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
         }

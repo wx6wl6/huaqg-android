@@ -18,6 +18,7 @@ import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
 import com.qlp2p.doctorcar.common.Utils;
 import com.qlp2p.doctorcar.net.ServerUrl;
+import com.qlp2p.doctorcar.net.UpdateAppManager;
 
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ public class SplashActivity extends BaseActivity {
     int isStartNewVersion = 0; // 0- no new version, 1- upgrade, 2- first install
 
     private static final int REQ_PERMISSION = 2001;
+    private UpdateAppManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,9 @@ public class SplashActivity extends BaseActivity {
         myglobal.user = Utils.getUserInfo(mContext);
 
         autoLogin();
-
+        //检查更新
+//        manager = new UpdateAppManager(this);
+//        manager.getUpdateMsg();
 
     }
 
@@ -55,7 +59,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void goMainTab() {
-        Intent it = new Intent(mContext, MainTabActivity.class);
+        Intent it = new Intent(mContext, MainActivity.class);
         startActivity(it);
         finish();
     }
@@ -125,7 +129,7 @@ public class SplashActivity extends BaseActivity {
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
 

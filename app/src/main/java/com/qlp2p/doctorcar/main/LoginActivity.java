@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -177,7 +176,7 @@ public class LoginActivity extends BaseActivity {
                     break;
                 default:
                     if (mContext != null)
-                        shortToast("网路不给力!");
+                        shortToast("网络不给力!");
                     break;
             }
         }
@@ -186,7 +185,7 @@ public class LoginActivity extends BaseActivity {
     };
 
     private void goMainTab() {
-        Intent it = new Intent(mContext, MainTabActivity.class);
+        Intent it = new Intent(mContext, MainActivity.class);
         it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(it);
         finish();

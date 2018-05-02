@@ -46,6 +46,7 @@ import com.qlp2p.doctorcar.common.Utils;
 import com.qlp2p.doctorcar.data.CheckCarData;
 import com.qlp2p.doctorcar.data.MessageEvent;
 import com.qlp2p.doctorcar.net.ServerUrl;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -219,7 +220,7 @@ public class CheckerOrderDetailActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
 
@@ -353,7 +354,7 @@ public class CheckerOrderDetailActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
 

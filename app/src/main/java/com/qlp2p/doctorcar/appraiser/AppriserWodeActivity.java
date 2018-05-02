@@ -43,6 +43,7 @@ import com.qlp2p.doctorcar.data.MessageEvent;
 import com.qlp2p.doctorcar.main.ResetPwdActivity;
 import com.qlp2p.doctorcar.net.ServerUrl;
 import com.qlp2p.doctorcar.ui.RoundedImageView;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -218,7 +219,7 @@ public class AppriserWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -434,7 +435,7 @@ public class AppriserWodeActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }

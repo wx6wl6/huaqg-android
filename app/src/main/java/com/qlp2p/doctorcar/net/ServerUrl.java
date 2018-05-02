@@ -23,16 +23,19 @@ public class ServerUrl {
 //	public final static String BASE_URL = "http://192.168.0.167:8080/doctorCar/";
 //	public final static String BASE_URL = "http://192.168.13.35:8080/doctorCar/";
 //	public final static String BASE_URL = "http://101.132.67.227:8080/doctorCar/";
-	public final static String BASE_URL = "http://47.100.173.217:10091/huaqgAdmin/";//18888888882 123456
+	//public final static String BASE_URL = "http://47.100.173.217:10091/huaqgAdmin/";    //测试环境
+	//public final static String BASE_URL = "http://www.huaqg.com:8080/huaqgAdmin/";
+	public final static String BASE_URL ="http://admin.huaqg.com/";     //生产环境
 //	public final static String BASE_URL = "http://192.168.31.78:8080/";
 
 	/**
 	 * 2.1	图书馆首页接口
 	 */
+	public final static String pingu 	                       = BASE_URL+"api/jingzhenggu";
 	
 	//3.1	登陆
 	public final static String login 							= BASE_URL+"LoginApiController/login";
-	//3.2	注册 - 手机验证码
+	//3.2	注册
 	public final static String getSmsCode 						= BASE_URL+"getSmsCode";
 	//3.3	密码找回
 	public final static String resetPwd 						= BASE_URL+"LoginApiController/resetPassword";
@@ -68,6 +71,8 @@ public class ServerUrl {
 	public final static String finishCheck 					= BASE_URL+"jc/finishCheck";
 	public final static String appraisalCar					= BASE_URL+"api/jingzhenggu";
 	public final static String appraisalCarHtml				= BASE_URL+"api/jingzhengu.html";
+	public final static String version_path				= BASE_URL+"api/get_data.json";
+	public final static String apk_path 				= BASE_URL+"api/PLAYBULBX.apk";
 
 
 

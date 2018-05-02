@@ -178,7 +178,7 @@ public class MyAdapter extends BaseAdapter{
 			case TYPE_4:
 				holder4 = new ViewHolder4(view,mActivity);
 				view = holder4.setData();
-				//添加进list  为了一个按钮按下录音时disable其他的btn
+				//添加进list  为了一个按钮按下录音时disable的btn
 				record_btn_list.add(holder4.record_btn);
 				holder4.play_btn.setId(numberList.get(position));
 				play_btn_list.add(holder4.play_btn);

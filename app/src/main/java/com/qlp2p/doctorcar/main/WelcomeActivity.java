@@ -59,7 +59,7 @@ public class WelcomeActivity extends BaseActivity implements OnClickListener{
 	
 	private void next_page(){
         Utils.saveCurrentVersion(mContext);
-		Intent it = new Intent(mContext, MainTabActivity.class);// 
+       Intent it = new Intent(mContext, MainActivity.class);
 		startActivity(it);
 		finish();
 	}

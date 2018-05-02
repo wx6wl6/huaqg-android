@@ -15,9 +15,10 @@ android {
         applicationId "com.qlp2p.cardoctor"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName '1.2'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
     }
     buildTypes {
         release {
@@ -40,6 +41,23 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    productFlavors {
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+        }
+        Baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Baidu"]
+        }
+        YingYongBao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "YingYongBao"]
+        }
+        WanDouJia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "WanDouJia"]
+        }
+        PP {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "PP"]
+        }
+    }
 }
 
 dependencies {
@@ -47,6 +65,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile project(':pulltorefresh-library')
@@ -65,11 +84,20 @@ dependencies {
     compile project(':ImageCropper')
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile files('libs/aliyun-oss-sdk-android-2.3.0.jar')
-    compile files('libs/okhttp-3.4.1.jar')
-    compile files('libs/okio-1.10.0.jar')
+//    compile files('libs/okhttp-3.4.1.jar')
+//    compile files('libs/okio-1.10.0.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.wx.wheelview:wheelview:1.3.3'
     compile 'com.commit451:PhotoView:1.2.4'
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
     compile 'org.apache.commons:commons-lang3:3.7'
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile files('libs/pinyin4j-2.5.0.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    compile 'com.gjiazhe:wavesidebar:1.3'
+    compile 'com.lzy.net:okgo:2.1.4'
+    compile files('libs/umeng-analytics-7.5.0.jar')
+//    compile 'com.umeng.analytics:analytics:latest.integration'
 }

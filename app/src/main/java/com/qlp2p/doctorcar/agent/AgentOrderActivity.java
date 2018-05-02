@@ -1,17 +1,11 @@
 package com.qlp2p.doctorcar.agent;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -55,6 +49,8 @@ public class AgentOrderActivity extends BaseActivity {
         switchContainer(0);
 
     }
+
+
 
     private void switchContainer(int type) {
         mSelType = type;

@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
+import com.qlp2p.doctorcar.event.AgentPjOrderDetailEvent;
+import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,16 +41,6 @@ public class RequestSuccessActivity extends BaseActivity {
         tvContent.setText(content);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
 
     @OnClick({R.id.ivTopBack, R.id.tv_set_price})
     public void onViewClicked(View view) {
@@ -54,6 +48,7 @@ public class RequestSuccessActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.ivTopBack:
             case R.id.tv_set_price:
+                EventBus.getDefault().post(new AgentPjOrderDetailEvent());
                 finish();
                 break;
 

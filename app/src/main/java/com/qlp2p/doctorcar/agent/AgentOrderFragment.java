@@ -224,7 +224,7 @@ public class AgentOrderFragment extends BaseFragment {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
@@ -236,10 +236,16 @@ public class AgentOrderFragment extends BaseFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (arrItems == null || arrItems.size() < 1)
-                    llEmpty.setVisibility(View.VISIBLE);
-                else
-                    llEmpty.setVisibility(View.GONE);
+                if (arrItems == null || arrItems.size() < 1){
+                    if (llEmpty!=null){
+                        llEmpty.setVisibility(View.VISIBLE);
+                    }
+                } else{
+                    if (llEmpty!=null){
+                        llEmpty.setVisibility(View.GONE);
+                    }
+                }
+
                 if (adapter == null) {
                     adapter = new ListAdapter();
                     actualListView.setAdapter(adapter);

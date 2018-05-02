@@ -14,7 +14,10 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.BaseImageDecoder;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.qlp2p.doctorcar.data.UserInfo;
+import com.qlp2p.doctorcar.main.MainActivity;
 import com.qlp2p.doctorcar.main.MainTabActivity;
+import com.umeng.analytics.MobclickAgent;
+
 //import com.qlp2p.doctorcar.service.LocationService;
 
 public class MyGlobal extends Application{
@@ -23,13 +26,17 @@ public class MyGlobal extends Application{
 //	public LocationService locationService;
 	public Vibrator mVibrator;
 
-
+	public static Context context;
 	private static MyGlobal mInstance = null;
-    
+	/**
+	 * 这是sp储存的地方
+	 */
+	public static String share_user_xml = "HuaQianGu";
     public static boolean wifiConnected = true;
     public static boolean picOnlyOnWifi = false;
     
     public MainTabActivity mainActivity = null;
+	public MainActivity mActivity = null;
 
 	public UserInfo user = null;
 
@@ -45,7 +52,7 @@ public class MyGlobal extends Application{
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-
+		context = getApplicationContext();
         initVariable();
         initImageLoader(getApplicationContext());
 

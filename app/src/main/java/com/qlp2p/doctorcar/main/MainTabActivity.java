@@ -1,7 +1,6 @@
 package com.qlp2p.doctorcar.main;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
@@ -31,7 +30,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.agent.AgentOrderActivity;
-import com.qlp2p.doctorcar.agent.AgentPjOrderDetailActivity;
 import com.qlp2p.doctorcar.agent.AgentWodeActivity;
 import com.qlp2p.doctorcar.appraiser.AppriserOrderActivity;
 import com.qlp2p.doctorcar.appraiser.AppriserWodeActivity;
@@ -46,6 +44,7 @@ import com.qlp2p.doctorcar.data.Province;
 import com.qlp2p.doctorcar.db.LocalCityTable;
 import com.qlp2p.doctorcar.home.HomeActivity;
 import com.qlp2p.doctorcar.net.ServerUrl;
+import com.qlp2p.doctorcar.ui.RoundedImageView;
 import com.wangli.FinalHttp;
 
 import org.greenrobot.eventbus.EventBus;
@@ -68,12 +67,13 @@ public class MainTabActivity extends TabActivity {
 
     public static final String LOGIN_SUCCESS = "loginSuccess";
 
-    ImageView ivPublish;
+
     protected FinalHttp finalHttp;
     public ImageLoader imageLoader = ImageLoader.getInstance();
     public DisplayImageOptions optionsUser = null;
 
     MyBroadcastReceiver myReceiver;
+    private RoundedImageView ivPublish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class MainTabActivity extends TabActivity {
     }
 
     private void initView(){
-        ivPublish = (ImageView) findViewById(R.id.iv_publish);
+        ivPublish = (RoundedImageView) findViewById(R.id.iv_publish);
 
         tabHost = getTabHost();
         if("4".equals(myglobal.user.userType)){//业务员

@@ -26,7 +26,6 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qlp2p.doctorcar.R;
-import com.qlp2p.doctorcar.appraiser.AppraiserPjOrderDetailActivity;
 import com.qlp2p.doctorcar.common.BaseFragment;
 import com.qlp2p.doctorcar.common.MyConstants;
 import com.qlp2p.doctorcar.common.Utils;
@@ -239,12 +238,12 @@ public class CheckerOrderFragment extends BaseFragment {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
 
-        ;
+
     };
 
     private void setAdapter() {

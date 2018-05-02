@@ -327,7 +327,7 @@ public class PhotoFragment extends BaseFragment {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }

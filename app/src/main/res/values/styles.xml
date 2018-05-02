@@ -13,17 +13,35 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled" >false</item>
+        <item name="android:windowIsTranslucent" >true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+    <!-- ActionSheet进出动画 -->
+    <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
+    </style>
+
     <style name="DialogTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
     <style name="popupAnimation" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/in</item>
         <item name="android:windowExitAnimation">@anim/out</item>
     </style>
+
 
 
     <style name="Aliwx_WXAnimation.Activity" parent="@android:style/Animation.Activity">
@@ -32,7 +50,6 @@
         <item name="android:activityCloseEnterAnimation">@anim/aliwx_slide_left_in</item>
         <item name="android:activityCloseExitAnimation">@anim/aliwx_slide_right_out</item>
     </style>
-
     <style name="Aliwx_ContentOverlay" parent="@android:style/Theme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -45,11 +62,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
     <style name="layout_style_mwv" parent="layout_style_mw">
         <item name="android:orientation">vertical</item>
     </style>
-
     <style name="layout_style_mwh" parent="layout_style_mw">
         <item name="android:orientation">horizontal</item>
     </style>
@@ -58,11 +73,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
     <style name="layout_style_wwv" parent="layout_style_ww">
         <item name="android:orientation">vertical</item>
     </style>
-
     <style name="layout_style_wwh" parent="layout_style_ww">
         <item name="android:orientation">horizontal</item>
     </style>
@@ -71,7 +84,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-
     <style name="layout_style_wmv" parent="layout_style_wm">
         <item name="android:orientation">vertical</item>
     </style>
@@ -80,11 +92,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-
     <style name="layout_style_mmv" parent="layout_style_mm">
         <item name="android:orientation">vertical</item>
     </style>
-
     <style name="layout_style_mmh" parent="layout_style_mm">
         <item name="android:orientation">horizontal</item>
     </style>
@@ -94,7 +104,6 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
     </style>
-
     <style name="layout_style_w0mv" parent="layout_style_w0m">
         <item name="android:orientation">vertical</item>
     </style>
@@ -104,7 +113,6 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
     </style>
-
     <style name="layout_style_m0wv" parent="layout_style_m0w">
         <item name="android:orientation">vertical</item>
     </style>
@@ -114,7 +122,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
     </style>
-
     <style name="layout_style_w0wv" parent="layout_style_w0w">
         <item name="android:orientation">vertical</item>
     </style>
@@ -124,7 +131,6 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
     </style>
-
     <style name="a_layout_style_hblank">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">1dp</item>
@@ -136,13 +142,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">#ffe5e5e5</item>
     </style>
-
     <style name="a_layout_style_hline">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
         <item name="android:background">#ffe5e5e5</item>
     </style>
-
     <style name="layout_style_weight_w1">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -154,7 +158,6 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">0dp</item>
     </style>
-
     <style name="layout_style_cline">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
@@ -258,35 +261,27 @@
     <style name="textview_style_white" parent="textview_style_normal">
         <item name="android:textColor">#ffffffff</item>
     </style>
-
     <style name="textview_style_gray" parent="textview_style_normal">
         <item name="android:textColor">#ff787878</item>
     </style>
-
     <style name="textview_style_black" parent="textview_style_normal">
         <item name="android:textColor">#ff333333</item>
     </style>
-
     <style name="textview_style_light_gray" parent="textview_style_normal">
         <item name="android:textColor">#ffcccccc</item>
     </style>
-
     <style name="textview_style_red" parent="textview_style_normal">
         <item name="android:textColor">#fff01025</item>
     </style>
-
     <style name="textview_style_pink" parent="textview_style_normal">
         <item name="android:textColor">#27ae61</item>
     </style>
-
     <style name="textview_style_green" parent="textview_style_normal">
         <item name="android:textColor">#ff259b24</item>
     </style>
-
     <style name="textview_style_blue" parent="textview_style_normal">
         <item name="android:textColor">#ff3288bb</item>
     </style>
-
     <style name="textview_style_deep_blue" parent="textview_style_normal">
         <item name="android:textColor">#ff3278bb</item>
     </style>
@@ -294,43 +289,33 @@
     <style name="textview_style_white24" parent="textview_style_white">
         <item name="android:textSize">24dp</item>
     </style>
-
     <style name="textview_style_white22" parent="textview_style_white">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_white20" parent="textview_style_white">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_white18" parent="textview_style_white">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_white17" parent="textview_style_white">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_white16" parent="textview_style_white">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_white15" parent="textview_style_white">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_white14" parent="textview_style_white">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_white13" parent="textview_style_white">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_white12" parent="textview_style_white">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_white11" parent="textview_style_white">
         <item name="android:textSize">11dp</item>
     </style>
@@ -338,39 +323,30 @@
     <style name="textview_style_gray22" parent="textview_style_gray">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_gray20" parent="textview_style_gray">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_gray18" parent="textview_style_gray">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_gray17" parent="textview_style_gray">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_gray16" parent="textview_style_gray">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_gray15" parent="textview_style_gray">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_gray14" parent="textview_style_gray">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_gray13" parent="textview_style_gray">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_gray12" parent="textview_style_gray">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_gray11" parent="textview_style_gray">
         <item name="android:textSize">11dp</item>
     </style>
@@ -378,43 +354,33 @@
     <style name="textview_style_black30" parent="textview_style_black">
         <item name="android:textSize">30dp</item>
     </style>
-
     <style name="textview_style_black22" parent="textview_style_black">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_black20" parent="textview_style_black">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_black18" parent="textview_style_black">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_black17" parent="textview_style_black">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_black16" parent="textview_style_black">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_black15" parent="textview_style_black">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_black14" parent="textview_style_black">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_black13" parent="textview_style_black">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_black12" parent="textview_style_black">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_black11" parent="textview_style_black">
         <item name="android:textSize">11dp</item>
     </style>
@@ -422,27 +388,21 @@
     <style name="textview_style_light_gray18" parent="textview_style_light_gray">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_light_gray16" parent="textview_style_light_gray">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_light_gray15" parent="textview_style_light_gray">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_light_gray14" parent="textview_style_light_gray">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_light_gray13" parent="textview_style_light_gray">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_light_gray12" parent="textview_style_light_gray">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_light_gray11" parent="textview_style_light_gray">
         <item name="android:textSize">11dp</item>
     </style>
@@ -450,39 +410,30 @@
     <style name="textview_style_red22" parent="textview_style_red">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_red20" parent="textview_style_red">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_red18" parent="textview_style_red">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_red17" parent="textview_style_red">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_red16" parent="textview_style_red">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_red15" parent="textview_style_red">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_red14" parent="textview_style_red">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_red13" parent="textview_style_red">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_red12" parent="textview_style_red">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_red11" parent="textview_style_red">
         <item name="android:textSize">11dp</item>
     </style>
@@ -490,39 +441,30 @@
     <style name="textview_style_pink22" parent="textview_style_pink">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_pink20" parent="textview_style_pink">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_pink18" parent="textview_style_pink">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_pink17" parent="textview_style_pink">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_pink16" parent="textview_style_pink">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_pink15" parent="textview_style_pink">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_pink14" parent="textview_style_pink">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_pink13" parent="textview_style_pink">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_pink12" parent="textview_style_pink">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_pink11" parent="textview_style_pink">
         <item name="android:textSize">11dp</item>
     </style>
@@ -530,43 +472,33 @@
     <style name="textview_style_green24" parent="textview_style_green">
         <item name="android:textSize">24dp</item>
     </style>
-
     <style name="textview_style_green22" parent="textview_style_green">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_green20" parent="textview_style_green">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_green18" parent="textview_style_green">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_green17" parent="textview_style_green">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_green16" parent="textview_style_green">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_green15" parent="textview_style_green">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_green14" parent="textview_style_green">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_green13" parent="textview_style_green">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_green12" parent="textview_style_green">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_green11" parent="textview_style_green">
         <item name="android:textSize">11dp</item>
     </style>
@@ -574,43 +506,33 @@
     <style name="textview_style_blue24" parent="textview_style_blue">
         <item name="android:textSize">24dp</item>
     </style>
-
     <style name="textview_style_blue22" parent="textview_style_blue">
         <item name="android:textSize">22dp</item>
     </style>
-
     <style name="textview_style_blue20" parent="textview_style_blue">
         <item name="android:textSize">20dp</item>
     </style>
-
     <style name="textview_style_blue18" parent="textview_style_blue">
         <item name="android:textSize">18dp</item>
     </style>
-
     <style name="textview_style_blue17" parent="textview_style_blue">
         <item name="android:textSize">17dp</item>
     </style>
-
     <style name="textview_style_blue16" parent="textview_style_blue">
         <item name="android:textSize">16dp</item>
     </style>
-
     <style name="textview_style_blue15" parent="textview_style_blue">
         <item name="android:textSize">15dp</item>
     </style>
-
     <style name="textview_style_blue14" parent="textview_style_blue">
         <item name="android:textSize">14dp</item>
     </style>
-
     <style name="textview_style_blue13" parent="textview_style_blue">
         <item name="android:textSize">13dp</item>
     </style>
-
     <style name="textview_style_blue12" parent="textview_style_blue">
         <item name="android:textSize">12dp</item>
     </style>
-
     <style name="textview_style_blue11" parent="textview_style_blue">
         <item name="android:textSize">11dp</item>
     </style>
@@ -623,7 +545,6 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
     <style name="text_style_dlg_content">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -641,6 +562,8 @@
         <item name="android:textColor">#a9a9a9</item>
         <item name="android:textSize">11sp</item>
     </style>
+
+
 
 
     <style name="sharp_layout_style">

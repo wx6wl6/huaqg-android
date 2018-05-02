@@ -1,39 +1,135 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:orientation="vertical">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent" android:layout_height="50dip"
+                    android:background="@color/colorPrimary">
+        <TextView android:id="@+id/tvTopTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center"
+                  android:text="p2p" android:textColor="@color/white" android:textSize="18dip" android:singleLine="true"
+                  android:maxLength="15"
+                  android:layout_centerInParent="true"/>
+        <com.qlp2p.doctorcar.ui.ClickEffectImageView
+            android:id="@+id/ivTopBack"  android:layout_centerVertical="true"
+            android:layout_width="35dp" android:layout_height="35dp" android:scaleType="centerInside"
+            android:src="@drawable/close" android:visibility="visible"
+            android:paddingLeft="8dip" android:paddingRight="6dip" android:paddingTop="8dip" android:paddingBottom="8dip"/>
+        <TextView android:id="@+id/tvTopRight" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:text="搜索" android:textColor="@drawable/top_right_selectable" android:textSize="16dip" android:gravity="center_vertical"
+                  android:layout_alignParentRight="true" android:paddingRight="12dip"/>
+        <com.qlp2p.doctorcar.ui.ClickEffectImageView
+            android:id="@+id/ivTopRight" android:layout_width="40dp" android:layout_height="match_parent"
+            android:src="@drawable/default_icon" android:visibility="gone" android:layout_alignParentRight="true"
+            android:scaleType="centerInside"
+            android:paddingLeft="10dip" android:paddingRight="15dip" android:paddingTop="12dip" android:paddingBottom="12dip"/>
 
-    <include layout="@layout/layout_top"/>
+    </RelativeLayout>
+    <android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:scrollbars="none"
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+            <com.gjiazhe.wavesidebar.WaveSideBar
+                android:paddingTop="70dp"
+                android:paddingBottom="70dp"
+                app:sidebar_text_size="12dp"
+                android:id="@+id/side_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                app:sidebar_position="right"
+                app:sidebar_max_offset="80dp"
+                app:sidebar_lazy_respond="false"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/listview"
+            android:fitsSystemWindows="true"
+            android:background="@color/colorPrimary"
+            android:layout_marginRight="-65dp"
+            android:id="@+id/rela_city_type_list"
+            android:layout_gravity="end"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:background="@color/colorPrimary"
+                android:id="@+id/lin_car_type_biaoti"
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+                <ImageView
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:id="@+id/img_car_type_biaoti"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/go_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_marginRight="15dp"
+                    android:textColor="#FFFFFFFF"
+                    android:id="@+id/tv_car_type_biaoti"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        <View
+            android:visibility="gone"
+            android:id="@+id/view"
+            android:layout_below="@+id/lin_car_type_biaoti"
+            android:background="#FFFFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+            <ListView
+                android:visibility="gone"
+                android:layout_below="@+id/view"
+                android:scrollbars="none"
+                android:divider="@drawable/list_item_divider"
+                android:dividerHeight="0.5dp"
+                android:id="@+id/car_type_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:id="@+id/ll_car_type_empty"
+                android:layout_centerInParent="true"
+                style="@style/layout_style_wwv"
+                android:visibility="gone">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dd_icon_wdd" />
 
-        <com.qlp2p.doctorcar.ui.QuickIndexBar
-            android:id="@+id/quickbar"
-            android:layout_width="35dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="#55000000" />
-
-        <TextView
-            android:id="@+id/showLabel"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/shap"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="A"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            android:visibility="gone" />
+                <TextView
+                    style="@style/textview_style_black18"
+                    android:text="暂无数据"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
     </RelativeLayout>
-
-
+</android.support.v4.widget.DrawerLayout>
 </LinearLayout>

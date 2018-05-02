@@ -3,43 +3,26 @@ package com.qlp2p.doctorcar.appraiser;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
 import com.qlp2p.doctorcar.common.BaseFragment;
 import com.qlp2p.doctorcar.common.MyConstants;
-import com.qlp2p.doctorcar.common.Utils;
 import com.qlp2p.doctorcar.data.MessageEvent;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -93,6 +76,7 @@ public class AppriserOrderActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
         ButterKnife.unbind(this);
     }
+
 
     @SuppressLint("CommitTransaction")
     public void setSelect(int i) {

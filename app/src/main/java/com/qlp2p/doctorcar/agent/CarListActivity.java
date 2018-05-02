@@ -1,10 +1,8 @@
 package com.qlp2p.doctorcar.agent;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,7 +20,7 @@ import com.qlp2p.doctorcar.R;
 import com.qlp2p.doctorcar.common.BaseActivity;
 import com.qlp2p.doctorcar.common.MyConstants;
 import com.qlp2p.doctorcar.data.BrandInfo;
-import com.qlp2p.doctorcar.data.MessageEvent;
+import com.qlp2p.doctorcar.event.SelectCarTypeEvent;
 import com.qlp2p.doctorcar.net.ServerUrl;
 
 import org.greenrobot.eventbus.EventBus;
@@ -68,25 +66,35 @@ public class CarListActivity extends BaseActivity {
 //                it.putExtra("carName", brandList.get(position).name);
 //                LocalBroadcastManager.getInstance(mContext).sendBroadcast(it);
 
-                MessageEvent event = new MessageEvent(MyConstants.SEL_CAR_NAME);
+                SelectCarTypeEvent event = new SelectCarTypeEvent(MyConstants.SEL_CAR_NAME);
                 event.putExtra("carName", brandList.get(position).name);
                 event.putExtra("carId",brandList.get(position).id);
                 event.putExtra("fullName", fullName);
                 event.putExtra("carYear", brandList.get(position).yeartype);
-                postEvent(event);
+                EventBus.getDefault().post(event);
+
                 finish();
             }
         });
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
+    @Override
     protected void onResume() {
         super.onResume();
+
         if (brandList == null || brandList.size() < 1) {
             brandList = new ArrayList<>();
             getInfo();
         }
     }
+
 
     private void getInfo() {
         if (ServerUrl.isNetworkConnected(mContext)) {
@@ -133,7 +141,7 @@ public class CarListActivity extends BaseActivity {
                     }
                     break;
                 default:
-                    shortToast("网路不给力!");
+                    shortToast("网络不给力!");
                     break;
             }
         }
